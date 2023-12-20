@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['super', 'ehs', 'purchasing', 'waho', 'other'])->nullable()->default('other');
+            $table->enum('role', ['super', 'ehs', 'purchasing', 'waho', 'other'])->default('other');
             $table->string('nrp')->nullable();
             $table->string('organization')->nullable();
             $table->timestamps();

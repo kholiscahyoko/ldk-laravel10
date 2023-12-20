@@ -21,13 +21,25 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">List User</h4>
-                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#modalCreate">
+                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createUserModal">
                                 <i class="fa fa-plus"></i>
-                                Tambah Data
+                                Add User
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                <li>Error Found: </li>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @elseif (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
@@ -54,8 +66,8 @@
                                         <td>{{ $row->created_at }}</td>
                                         <td>{{ $row->updated_at }}</td>
                                         <td>
-                                            <a href="#modalEdit{{ $row->id }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>Edit</a>
-                                            <a href="#modalHapus{{ $row->id }}" class="btn btn-xs btn-danger"><i class="fa fa-delete"></i>Delete</a>
+                                            <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editUserModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
+                                            <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteUserModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -83,21 +95,7 @@
 <!--**********************************
     Content body end
 ***********************************-->
-<!-- Large modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="modalCreate">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Data User</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Modal body text goes here.</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('user.form.add')
+@include('user.form.edit')
+@include('user.form.delete')
 @endsection

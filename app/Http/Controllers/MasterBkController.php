@@ -39,20 +39,4 @@ class MasterBkController extends Controller
         ];
         return view('master_bk.list', $data);
     }
-
-    // public function store(Request $request){
-    //     $this->validate($request,[
-    //         'email' => 'email',
-    //         'password' => 'required|confirmed|min:3'
-    //     ]);
-
-    //     User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'role' => $request->role,
-    //         // 'created_at' => Carbon::now(),
-    //         // 'updated_at' => Carbon::now()
-    //     ]);
-    // }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
@@ -37,8 +39,15 @@ Route::controller(MasterBkController::class)->group(function(){
 });
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('/user', 'index');
+    Route::get('/user', 'index')->middleware('checkRole:super');
+    Route::get('/user/{id}', 'get');
     Route::post('/user/store', 'store');
     Route::post('/user/update/{id}', 'update');
     Route::post('/user/destroy/{id}', 'destroy');
 });
+
+
+/**
+ * Log the user out of the application.
+ */
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
