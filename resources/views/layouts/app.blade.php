@@ -285,7 +285,7 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">
+                        <a class="has-arrow" href="/home" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                     </li>
@@ -294,7 +294,7 @@
                             <i class="icon-chemistry menu-icon"></i><span class="nav-text">Master BK</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">View Data</a></li>
+                            <li><a href="/master_bk">View Data</a></li>
                             <li><a href="#">Create New</a></li>
                         </ul>
                     </li>
@@ -330,7 +330,7 @@
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Data</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">View Data</a></li>
+                            <li><a href="/user">View Data</a></li>
                             <li><a href="#">Create New</a></li>
                         </ul>
                     </li>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MasterBk;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
-class MasterBkController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,8 +28,8 @@ class MasterBkController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data Master BK',
-            'data_master_bk' => MasterBk::all()
+            'title' => 'Data User',
+            'data_user' => User::all()
         ];
 
         $data['styles'] = [
@@ -37,22 +40,22 @@ class MasterBkController extends Controller
             "/assets/plugins/tables/js/datatable/dataTables.bootstrap4.min.js",
             "/assets/plugins/tables/js/datatable-init/datatable-basic.min.js",
         ];
-        return view('master_bk.list', $data);
+        return view('user.list', $data);
     }
 
-    // public function store(Request $request){
-    //     $this->validate($request,[
-    //         'email' => 'email',
-    //         'password' => 'required|confirmed|min:3'
-    //     ]);
+    public function store(Request $request){
+        $this->validate($request,[
+            'email' => 'email',
+            'password' => 'required|confirmed|min:3'
+        ]);
 
-    //     User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'role' => $request->role,
-    //         // 'created_at' => Carbon::now(),
-    //         // 'updated_at' => Carbon::now()
-    //     ]);
-    // }
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            // 'created_at' => Carbon::now(),
+            // 'updated_at' => Carbon::now()
+        ]);
+    }
 }
