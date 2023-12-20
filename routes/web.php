@@ -20,16 +20,9 @@ use App\Http\Controllers\MasterBkController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', [HomeController::class, 'index']);
-Route::get('/', [IndexController::class, 'index']);
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/master_bk', [App\Http\Controllers\MasterBkController::class, 'index'])->name('master_bk');
 
 Route::controller(MasterBkController::class)->group(function(){
