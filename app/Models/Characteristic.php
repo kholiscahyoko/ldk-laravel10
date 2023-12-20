@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MasterBk extends Model
+class Characteristic extends Model
 {
     use HasFactory;
+
+    protected $table = 'characteristic';
 
     /**
      * The attributes that are mass assignable.
@@ -15,13 +17,9 @@ class MasterBk extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'material_number',
-        'material_desc',
-        'maker',
-        'ldk_fr_maker',
-        'creator_id',
-        'modifier_id',
+        'characteristic_name',
+        'pictogram',
+        'notes',
     ];
 
-    protected $table = 'master_bk';
 }

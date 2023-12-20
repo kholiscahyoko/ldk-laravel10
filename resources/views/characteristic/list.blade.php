@@ -8,23 +8,22 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Master Bahan Kimia</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Characteristic</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">List</a></li>
             </ol>
         </div>
     </div>
     <!-- row -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">List Master Bahan Kimia</h4>
-                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createModal">
+                            <h4 class="card-title">List Characteristic</h4>
+                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createUserModal">
                                 <i class="fa fa-plus"></i>
-                                Add Master Bahan Kimia
+                                Add Characteristic
                             </button>
                         </div>
                     </div>
@@ -46,11 +45,11 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Material Number</th>
-                                        <th>Desc</th>
-                                        <th>Maker</th>
-                                        <th>LDK Maker</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
+                                        <th>Pictogram</th>
+                                        <th>Notes</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -58,35 +57,14 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($data_master_bk as $row)
+                                    @foreach ($data as $row)
                                     <tr>
                                         <td>{{ $no++}}</td>
-                                        <td>{{ $row->material_number }}</td>
-                                        <td>{{ $row->desc_item }}</td>
-                                        <td>{{ $row->maker }}</td>
-                                        <td>
-                                            @if (!empty($row->ldk_fr_maker))
-                                                <a class="badge badge-primary p-2" href="{{ Storage::url($row->ldk_fr_maker) }}" target="_blank">Show LDK</a>
-                                            @else    
-                                                No Doc
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @switch($row->status_bk)
-                                                @case(0)
-                                                    <span class="badge badge-primary p-2">Need Review</span>
-                                                    @break
-                                                @case(1)
-                                                    <span class="badge badge-danger p-2">Rejected</span>
-                                                    @break
-                                                @case(2)
-                                                    <span class="badge badge-success p-2">Active</span>
-                                                    @break
-                                                @default
-                                                    <span class="badge badge-danger p-2">Undefined</span>
-                                                    @break
-                                            @endswitch
-                                        </td>
+                                        <td>{{ $row->characteristic_name }}</td>
+                                        <td>{{ $row->pictogram }}</td>
+                                        <td>{{ $row->notes }}</td>
+                                        <td>{{ $row->created_at }}</td>
+                                        <td>{{ $row->updated_at }}</td>
                                         <td>
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
@@ -97,11 +75,11 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Material Number</th>
-                                        <th>Desc</th>
-                                        <th>Maker</th>
-                                        <th>LDK Maker</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -117,8 +95,7 @@
 <!--**********************************
     Content body end
 ***********************************-->
-@include('master_bk.form.add')
-@include('master_bk.form.delete')
-@include('master_bk.form.edit')
-
+{{-- @include('characteristic.form.add') --}}
+{{-- @include('characteristic.form.edit') --}}
+{{-- @include('characteristic.form.delete') --}}
 @endsection

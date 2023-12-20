@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CharacteristicController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -33,9 +34,18 @@ Route::get('/master_bk', [App\Http\Controllers\MasterBkController::class, 'index
 
 Route::controller(MasterBkController::class)->group(function(){
     Route::get('/master_bk', 'index');
-    Route::post('/user/store', 'store');
-    Route::post('/user/update/{id}', 'update');
-    Route::post('/user/destroy/{id}', 'destroy');
+    Route::get('/master_bk/{id}', 'get');
+    Route::post('/master_bk/store', 'store');
+    Route::post('/master_bk/update/{id}', 'update');
+    Route::post('/master_bk/destroy/{id}', 'destroy');
+});
+
+Route::controller(CharacteristicController::class)->group(function(){
+    Route::get('/characteristic', 'index');
+    Route::get('/characteristic/{id}', 'get');
+    Route::post('/characteristic/store', 'store');
+    Route::post('/characteristic/update/{id}', 'update');
+    Route::post('/characteristic/destroy/{id}', 'destroy');
 });
 
 Route::controller(UserController::class)->group(function(){
