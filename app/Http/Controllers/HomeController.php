@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MasterBk;
+use App\Models\Characteristic;
+use App\Models\User;
+use App\Models\Ldk;
 
 class HomeController extends Controller
 {
@@ -24,7 +28,11 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Login'
+            'title' => 'Home',
+            'master_bk_count' => MasterBk::count(),
+            'characteristic_count' => Characteristic::count(),
+            'user_count' => User::count(),
+            'ldk_count' => Ldk::count(),
         ];
 
         $data['styles'] = [

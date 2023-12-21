@@ -17,7 +17,7 @@ class MasterBkSeeder extends Seeder
     {
         DB::table('master_bk')->insert([
             'material_number' => sprintf("%02d-%02d-%05d", rand(1, 99), rand(1, 99), rand(1, 99999)),
-            'desc_item' => 'THINNER FMS RBT-5',
+            'material_desc' => 'THINNER FMS RBT-5',
             'maker' => 'Nippon Paint',
             'creator_id' => 1,
             'modifier_id' => 1,
