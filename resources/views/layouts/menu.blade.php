@@ -1,6 +1,6 @@
 <ul class="metismenu" id="menu">
     <li>
-        <a class="has-arrow" href="/home" aria-expanded="false">
+        <a class="has-arrow" href="/" aria-expanded="false">
             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
         </a>
     </li>
