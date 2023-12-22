@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MasterBk extends Model
 {
@@ -22,6 +23,14 @@ class MasterBk extends Model
         'creator_id',
         'modifier_id',
     ];
+
+    /**
+     * Get the locations for the master bahan kimia.
+     */
+    public function location(): HasMany
+    {
+        return $this->hasMany(Location::class);
+    }
 
     protected $table = 'master_bk';
 }

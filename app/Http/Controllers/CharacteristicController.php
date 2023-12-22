@@ -29,7 +29,7 @@ class CharacteristicController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data Master BK',
+            'title' => 'Data Characteristic',
             'data' => Characteristic::all()
         ];
 

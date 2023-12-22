@@ -52,7 +52,7 @@
             <i class="icon-location-pin menu-icon"></i><span class="nav-text">Locations</span>
         </a>
         <ul aria-expanded="false">
-            <li><a href="#">View Data</a></li>
+            <li><a href="/location">View Data</a></li>
             <li><a href="#">Create New</a></li>
         </ul>
     </li>

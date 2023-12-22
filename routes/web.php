@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasterBkController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,14 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/user/store', 'store');
     Route::post('/user/update/{id}', 'update');
     Route::post('/user/destroy/{id}', 'destroy');
+});
+
+Route::controller(LocationController::class)->group(function(){
+    Route::get('/location', 'index');
+    Route::get('/location/{id}', 'get');
+    Route::post('/location/store', 'store');
+    Route::post('/location/update/{id}', 'update');
+    Route::post('/location/destroy/{id}', 'destroy');
 });
 
 
