@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">List Characteristic</h4>
-                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createUserModal">
+                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createModal">
                                 <i class="fa fa-plus"></i>
                                 Add Characteristic
                             </button>
@@ -61,7 +61,13 @@
                                     <tr>
                                         <td>{{ $no++}}</td>
                                         <td>{{ $row->characteristic_name }}</td>
-                                        <td>{{ $row->pictogram }}</td>
+                                        <td>
+                                            @if (!empty($row->pictogram))
+                                                <img src="{{ Storage::url($row->pictogram) }}" alt="{{ $row->characteristic_name }}" class="img-thumbnail" style="max-width: 50px; border: none;">
+                                            @else    
+                                                No Image
+                                            @endif
+                                        </td>
                                         <td>{{ $row->notes }}</td>
                                         <td>{{ $row->created_at }}</td>
                                         <td>{{ $row->updated_at }}</td>
@@ -95,7 +101,7 @@
 <!--**********************************
     Content body end
 ***********************************-->
-{{-- @include('characteristic.form.add') --}}
-{{-- @include('characteristic.form.edit') --}}
-{{-- @include('characteristic.form.delete') --}}
+@include('characteristic.form.add')
+@include('characteristic.form.edit')
+@include('characteristic.form.delete')
 @endsection
