@@ -9,6 +9,7 @@ use App\Models\Characteristic;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LdkController extends Controller
 {
@@ -58,13 +59,6 @@ class LdkController extends Controller
             ],
             'ldk_number' => 'required|min:5',
             'revision_number' => 'required|numeric',
-            'composition' => 'required|min:3',
-            'hazard_identification' => 'required|min:5',
-            'melting_point' => 'required|min:2',
-            'colour' => 'required|min:2',
-            'odour' => 'required|min:2',
-            'ph' => 'required|min:2',
-            'physical_state' => 'required|min:2',
             'characteristic' => 'required|array',
             'characteristic.*' => Rule::exists(Characteristic::class, 'id'),
         ]);
@@ -81,17 +75,95 @@ class LdkController extends Controller
             'material_id' => $master_bk->id,
             'ldk_number' => $request->ldk_number,
             'revision_number' => $request->revision_number,
+            'reactivity' => $request->reactivity,
             'composition' => $request->composition,
             'hazard_identification' => $request->hazard_identification,
-            'melting_point' => $request->melting_point,
+            'physical_state' => $request->physical_state,
             'colour' => $request->colour,
             'odour' => $request->odour,
             'ph' => $request->ph,
-            'physical_state' => $request->physical_state,
+            'melting_point' => $request->melting_point,
+            'lfl' => $request->lfl,
+            'ufl' => $request->ufl,
+            'p3k_eye' => $request->p3k_eye,
+            'p3k_skin' => $request->p3k_skin,
+            'p3k_ingestion' => $request->p3k_ingestion,
+            'p3k_inhalation' => $request->p3k_inhalation,
+            'p3k_others' => $request->p3k_others,
+            'handling_storage' => $request->handling_storage,
+            'spill_leakage' => $request->spill_leakage,
+            'disposal' => $request->disposal,
+            'ecology_info' => $request->ecology_info,
+            'toxicology_info' => $request->toxicology_info,
+            'regulation' => $request->regulation,
+            'shipping' => $request->shipping,
+            'others_info' => $request->others_info,
             'created_by' => Auth::user()->id,
         ]);
 
         $ldk->characteristic()->attach($request->characteristic);
+        return redirect('/ldk')->with('success', 'Data has been saved successfully');
+    }
+
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'material_number' => [
+                'required',
+                Rule::exists(MasterBk::class, 'material_number'),
+            ],
+            'ldk_number' => 'required|min:5',
+            'revision_number' => 'required|numeric',
+            'characteristic' => 'required|array',
+            'characteristic.*' => Rule::exists(Characteristic::class, 'id'),
+        ]);
+
+        $master_bk = MasterBk::where('material_number', $request->material_number)->first();
+
+        if(!$master_bk)
+            return redirect('/ldk')->with('error', 'Material Number is invalid');
+
+        Validator::make(['material_id' => $master_bk->id], [
+            'material_id' => [
+                'required',
+                Rule::unique(Ldk::class)->ignore($master_bk->id)
+            ]
+        ]);
+
+        $ldk = Ldk::find($id);
+        if(!$ldk)
+            return redirect('/ldk')->with('error', 'LDK is not found');
+
+        $ldk->material_id = $master_bk->id;
+        $ldk->ldk_number = $request->ldk_number;
+        $ldk->revision_number = $request->revision_number;
+        $ldk->reactivity = $request->reactivity;
+        $ldk->composition = $request->composition;
+        $ldk->hazard_identification = $request->hazard_identification;
+        $ldk->physical_state = $request->physical_state;
+        $ldk->colour = $request->colour;
+        $ldk->odour = $request->odour;
+        $ldk->ph = $request->ph;
+        $ldk->melting_point = $request->melting_point;
+        $ldk->lfl = $request->lfl;
+        $ldk->ufl = $request->ufl;
+        $ldk->p3k_eye = $request->p3k_eye;
+        $ldk->p3k_skin = $request->p3k_skin;
+        $ldk->p3k_ingestion = $request->p3k_ingestion;
+        $ldk->p3k_inhalation = $request->p3k_inhalation;
+        $ldk->p3k_others = $request->p3k_others;
+        $ldk->handling_storage = $request->handling_storage;
+        $ldk->spill_leakage = $request->spill_leakage;
+        $ldk->disposal = $request->disposal;
+        $ldk->ecology_info = $request->ecology_info;
+        $ldk->toxicology_info = $request->toxicology_info;
+        $ldk->regulation = $request->regulation;
+        $ldk->shipping = $request->shipping;
+        $ldk->others_info = $request->others_info;
+        $ldk->updated_by = Auth::user()->id;
+        $ldk->save();
+
+        $ldk->characteristic()->sync($request->characteristic);
         return redirect('/ldk')->with('success', 'Data has been saved successfully');
     }
 

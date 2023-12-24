@@ -103,6 +103,7 @@
 ***********************************-->
 @include('ldk.form.add')
 @include('ldk.form.detail')
+@include('ldk.form.edit')
 @include('ldk.form.delete')
 
 @endsection
