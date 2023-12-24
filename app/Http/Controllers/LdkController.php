@@ -164,7 +164,7 @@ class LdkController extends Controller
         $ldk->save();
 
         $ldk->characteristic()->sync($request->characteristic);
-        return redirect('/ldk')->with('success', 'Data has been saved successfully');
+        return redirect('/ldk')->with('success', 'Data has been updated successfully');
     }
 
     public function get($id){
