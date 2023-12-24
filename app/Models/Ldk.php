@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ldk extends Model
 {
@@ -46,4 +48,17 @@ class Ldk extends Model
     ];
 
     protected $table = 'ldk';
+
+    /**
+     * Get the ldk for the master bahan kimia.
+     */
+    public function ldk(): HasOne
+    {
+        return $this->hasOne(MasterBk::class);
+    }
+
+    public function characteristic(): BelongsToMany
+    {
+        return $this->belongsToMany(characteristic::class, 'ldk_characteristic', 'ldk_id', 'characteristic_id');
+    }
 }

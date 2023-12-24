@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Characteristic extends Model
 {
@@ -21,5 +22,10 @@ class Characteristic extends Model
         'pictogram',
         'notes',
     ];
+
+    public function ldk(): BelongsToMany
+    {
+        return $this->belongsToMany(Ldk::class, 'ldk_characteristic', 'characteristic_id', 'ldk_id');
+    }
 
 }

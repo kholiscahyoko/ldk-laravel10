@@ -41,7 +41,7 @@
             <i class="icon-list menu-icon"></i><span class="nav-text">Lembar Data Keselamatan</span>
         </a>
         <ul aria-expanded="false">
-            <li><a href="#">View Data</a></li>
+            <li><a href="/ldk">View Data</a></li>
             <li><a href="#">Create New</a></li>
         </ul>
     </li>

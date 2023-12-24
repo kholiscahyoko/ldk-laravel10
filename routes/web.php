@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasterBkController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\LdkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::controller(MasterBkController::class)->group(function(){
 
 Route::controller(CharacteristicController::class)->group(function(){
     Route::get('/characteristic', 'index');
+    Route::get('/characteristic/all', 'getAll');
     Route::get('/characteristic/{id}', 'get');
     Route::post('/characteristic/store', 'store');
     Route::post('/characteristic/update/{id}', 'update');
@@ -56,6 +58,14 @@ Route::controller(LocationController::class)->group(function(){
     Route::post('/location/store', 'store');
     Route::post('/location/update/{id}', 'update');
     Route::post('/location/destroy/{id}', 'destroy');
+});
+
+Route::controller(LdkController::class)->group(function(){
+    Route::get('/ldk', 'index');
+    Route::get('/ldk/{id}', 'get');
+    Route::post('/ldk/store', 'store');
+    Route::post('/ldk/update/{id}', 'update');
+    Route::post('/ldk/destroy/{id}', 'destroy');
 });
 
 

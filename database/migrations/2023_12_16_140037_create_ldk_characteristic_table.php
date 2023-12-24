@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('ldk_characteristic', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('ldk_id');
             $table->unsignedBigInteger('characteristic_id');
-            $table->unsignedBigInteger('creator_id');
             $table->timestamps();
 
-            $table->foreign('material_id')->references('id')->on('master_bk');
+            $table->foreign('ldk_id')->references('id')->on('ldk');
             $table->foreign('characteristic_id')->references('id')->on('characteristic');
-            $table->foreign('creator_id')->references('id')->on('users');
         });
     }
 

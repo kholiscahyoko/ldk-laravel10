@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MasterBk extends Model
 {
@@ -30,6 +31,14 @@ class MasterBk extends Model
     public function location(): HasMany
     {
         return $this->hasMany(Location::class);
+    }
+
+    /**
+     * Get the ldk for the master bahan kimia.
+     */
+    public function ldk(): HasOne
+    {
+        return $this->hasOne(Ldk::class);
     }
 
     protected $table = 'master_bk';

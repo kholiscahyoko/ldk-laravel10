@@ -114,6 +114,15 @@ class CharacteristicController extends Controller
         return response()->json(['data' => $data]);        
     }
 
+    public function getAll(){
+        $data = Characteristic::all();
+
+        if(!$data){
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+        return response()->json(['data' => $data]);        
+    }
+
     public function destroy($id){
         $characteristic = Characteristic::find($id);
         if(!$characteristic){
