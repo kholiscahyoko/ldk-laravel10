@@ -40,7 +40,7 @@ class MasterBk extends Model
      */
     public function ldk(): HasOne
     {
-        return $this->hasOne(Ldk::class);
+        return $this->hasOne(Ldk::class, 'material_id');
     }
 
     protected $table = 'master_bk';

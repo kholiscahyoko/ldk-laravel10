@@ -71,6 +71,12 @@ class LdkController extends Controller
 
         $master_bk = MasterBk::where('material_number', $request->material_number)->first();
 
+        if(!$master_bk)
+            return redirect('/ldk')->with('error', 'Material Number is invalid');
+
+        if(Ldk::where('material_id', $master_bk->id)->first())
+            return redirect('/ldk')->with('error', 'Material Number is already existed');
+
         $ldk = Ldk::create([
             'material_id' => $master_bk->id,
             'ldk_number' => $request->ldk_number,

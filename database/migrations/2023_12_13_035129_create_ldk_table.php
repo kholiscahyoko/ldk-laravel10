@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('revision_number');
             $table->string('ldk_number')->unique();
             $table->unsignedBigInteger('material_id');
-            $table->foreign('material_id')->references('id')->on('master_bk');
+            $table->unique('material_id')->foreign()->references('id')->on('master_bk');
             $table->string('reactivity')->nullable();
             $table->string('composition')->nullable();
             $table->text('hazard_identification')->nullable();
