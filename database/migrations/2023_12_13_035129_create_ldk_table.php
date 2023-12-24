@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('ldk_number')->unique();
             $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('master_bk');
-            $table->string('reactivity');
-            $table->string('composition');
+            $table->string('reactivity')->nullable();
+            $table->string('composition')->nullable();
             $table->text('hazard_identification')->nullable();
-            $table->string('physical_state');
+            $table->string('physical_state')->nullable();
             $table->string('colour')->nullable();
             $table->string('odour')->nullable();
             $table->string('ph')->nullable();
@@ -40,7 +40,11 @@ return new class extends Migration
             $table->text('regulation')->nullable();
             $table->text('shipping')->nullable();
             $table->text('others_info')->nullable();
+            $table->foreignId('created_by')->nullable()->references('id')->on('users');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+            $table->foreignId('deleted_by')->nullable()->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

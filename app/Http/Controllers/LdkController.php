@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ldk;
 use App\Models\MasterBk;
+use App\Models\Characteristic;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LdkController extends Controller
 {
@@ -49,7 +52,10 @@ class LdkController extends Controller
      */
     public function store(Request $request){
         $this->validate($request,[
-            'material_number' => 'required|min:5|exists:master_bk.material_number',
+            'material_number' => [
+                'required',
+                Rule::exists(MasterBk::class, 'material_number'),
+            ],
             'ldk_number' => 'required|min:5',
             'revision_number' => 'required|numeric',
             'composition' => 'required|min:3',
@@ -60,10 +66,13 @@ class LdkController extends Controller
             'ph' => 'required|min:2',
             'physical_state' => 'required|min:2',
             'characteristic' => 'required|array',
-            'characteristic.*' => 'exist:characteristid.id',
+            'characteristic.*' => Rule::exists(Characteristic::class, 'id'),
         ]);
 
+        $master_bk = MasterBk::where('material_number', $request->material_number)->first();
+
         $ldk = Ldk::create([
+            'material_id' => $master_bk->id,
             'ldk_number' => $request->ldk_number,
             'revision_number' => $request->revision_number,
             'composition' => $request->composition,
@@ -73,13 +82,32 @@ class LdkController extends Controller
             'odour' => $request->odour,
             'ph' => $request->ph,
             'physical_state' => $request->physical_state,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'created_by' => Auth::user()->id,
         ]);
 
         $ldk->characteristic()->attach($request->characteristic);
         return redirect('/ldk')->with('success', 'Data has been saved successfully');
     }
 
+    public function get($id){
+        $data = Ldk::with('master_bk')->with('characteristic')->find($id);
 
+        if(!$data){
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+        return response()->json(['data' => $data]);        
+    }
+
+    public function destroy($id){
+        $data = Ldk::find($id);
+        if(!$data){
+            return redirect('/ldk')->with('error', 'Data is not found');
+        }
+
+        $data->deleted_by = Auth::user()->id;
+        $data->deleted_at = Carbon::now();
+        $data->save();
+
+        return redirect('/ldk')->with('success', 'Data has been deleted successfully');
+    }
 }

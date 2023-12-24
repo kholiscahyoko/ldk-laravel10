@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MasterBk extends Model
 {
-    use HasFactory;
-
+    use HasFactory, SoftDeletes;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -21,8 +22,9 @@ class MasterBk extends Model
         'material_desc',
         'maker',
         'ldk_fr_maker',
-        'creator_id',
-        'modifier_id',
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     /**

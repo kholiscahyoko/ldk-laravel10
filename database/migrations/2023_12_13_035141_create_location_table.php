@@ -20,9 +20,11 @@ return new class extends Migration
             $table->integer('qty');
             $table->string('pic_nrp');
             $table->string('pic_name');
-            $table->unsignedBigInteger('creator_id');
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table->foreignId('created_by')->nullable()->references('id')->on('users');
+            $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+            $table->foreignId('deleted_by')->nullable()->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -64,8 +64,6 @@ class CharacteristicController extends Controller
             'characteristic_name' => $request->characteristic_name,
             'notes' => $request->notes,
             'pictogram' => $imgPath,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
         ]);
         return redirect('/characteristic')->with('success', 'Data has been saved successfully');
     }
@@ -83,11 +81,8 @@ class CharacteristicController extends Controller
             return redirect('/characteristic')->with('error', 'Data is not found');
         }
 
-        $data_update = [
-            'characteristic_name' => $request->characteristic_name,
-            'notes' => $request->notes,
-            'updated_at' => Carbon::now(),
-        ];
+        $data->characteristic_name = $request->characteristic_name;
+        $data->notes = $request->notes;
 
         if($request->hasFile('pictogram')){
             if(!empty($data->pictogram)){
@@ -99,9 +94,10 @@ class CharacteristicController extends Controller
             $newFileName = $uuid . '_' . $safeFileName;
             $imgPath = $request->file('pictogram')->storeAs('pictogram', $newFileName, 'public');
             $data_update['pictogram'] = $imgPath;
+            $data->pictogram = $imgPath;
         }
 
-        $data = Characteristic::find($id)->update($data_update);
+        $data->save();
         return redirect('/characteristic')->with('success', 'Data has been updated successfully');
     }
 
@@ -124,16 +120,14 @@ class CharacteristicController extends Controller
     }
 
     public function destroy($id){
-        $characteristic = Characteristic::find($id);
-        if(!$characteristic){
+        $data = Characteristic::find($id);
+        if(!$data){
             return redirect('/characteristic')->with('error', 'Data is not found');
         }
 
-        if(!empty($characteristic->pictogram)){
-            Storage::delete($characteristic->pictogram);
-        }
-        
-        $characteristic->delete();
+        $data->deleted_by = Auth::user()->id;
+        $data->deleted_at = Carbon::now();
+        $data->save();
 
         return redirect('/characteristic')->with('success', 'Data has been deleted successfully');
     }

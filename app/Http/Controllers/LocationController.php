@@ -59,9 +59,8 @@ class LocationController extends Controller
             'qty' => $request->qty,
             'pic_nrp' => $request->pic_nrp,
             'pic_name' => $request->pic_name,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'creator_id' => Auth::user()->id,
+            'created_by' => Auth::user()->id,
+            'updated_by' => Auth::user()->id,
         ]);
         return redirect('/location')->with('success', 'Data has been saved successfully');
     }
@@ -92,7 +91,7 @@ class LocationController extends Controller
             'qty' => $request->qty,
             'pic_nrp' => $request->pic_nrp,
             'pic_name' => $request->pic_name,
-            'updated_at' => Carbon::now(),
+            'updated_by' => Auth::user()->id,
         ]);
         return redirect('/location')->with('success', 'Data has been updated successfully');
     }
@@ -112,7 +111,13 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $data = Location::find($id)->delete();
+        $data = Location::find($id);
+        if(!$data){
+            return redirect('/location')->with('error', 'Data is not found');
+        }
+        $data->deleted_by = Auth::user()->id;
+        $data->deleted_at = Carbon::now();
+        $data->save();
 
         return redirect('/location')->with('success', 'Data has been deleted successfully');
     }

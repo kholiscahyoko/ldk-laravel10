@@ -57,13 +57,13 @@
                 var responseData = JSON.parse(xhr.responseText);
 
                 // Access the user data
-                var master_bk = responseData.master_bk;
-                console.log(master_bk);
+                var data = responseData.data;
+                console.log(data);
 
-                document.getElementById('edit_material_number').value = master_bk.material_number;
-                document.getElementById('edit_material_desc').value = master_bk.material_desc;
-                document.getElementById('edit_maker').value = master_bk.maker;
-                document.getElementById('editForm').action = `/master_bk/update/${master_bk.id}`;
+                document.getElementById('edit_material_number').value = data.material_number;
+                document.getElementById('edit_material_desc').value = data.material_desc;
+                document.getElementById('edit_maker').value = data.maker;
+                document.getElementById('editForm').action = `/master_bk/update/${data.id}`;
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);

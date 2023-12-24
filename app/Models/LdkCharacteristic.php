@@ -18,11 +18,8 @@ class LdkCharacteristic extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'material_id',
-        'characteristic_id',
-        'creator_id',
-        'creator_at',
-        'updated_at',
+        'ldk_id',
+        'characteristic_id'
     ];
 
     /**

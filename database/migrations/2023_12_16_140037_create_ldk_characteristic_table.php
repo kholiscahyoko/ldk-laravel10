@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('ldk_id');
             $table->unsignedBigInteger('characteristic_id');
-            $table->timestamps();
 
             $table->foreign('ldk_id')->references('id')->on('ldk');
             $table->foreign('characteristic_id')->references('id')->on('characteristic');

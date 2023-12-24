@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Location extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'location';
 
@@ -24,7 +25,9 @@ class Location extends Model
         'qty',
         'pic_nrp',
         'pic_name',
-        'creator_id'
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     /**

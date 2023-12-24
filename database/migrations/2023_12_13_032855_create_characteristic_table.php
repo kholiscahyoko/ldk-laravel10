@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('characteristic_name');
             $table->binary('pictogram');
             $table->text('notes');
+            $table->foreignId('created_by')->nullable()->references('id')->on('users');
+            $table->foreignId('modified_by')->nullable()->references('id')->on('users');
+            $table->foreignId('deleted_by')->nullable()->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
