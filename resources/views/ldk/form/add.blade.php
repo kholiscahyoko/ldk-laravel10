@@ -27,7 +27,7 @@
                         <div class="form-group col">
                             <label for="revision_number">Revision Number <span class="text-danger">*</span></label>
                             <div>
-                                <input type="text" class="form-control" id="revision_number" name="revision_number" placeholder="Enter revision number" required>
+                                <input type="number" class="form-control" id="revision_number" name="revision_number" placeholder="Enter revision number" required>
                             </div>
                         </div>
                         <div class="form-group col">
