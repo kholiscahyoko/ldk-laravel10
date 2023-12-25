@@ -54,15 +54,13 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration hover">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Pictogram</th>
                                         <th>Notes</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -82,9 +80,8 @@
                                             @endif
                                         </td>
                                         <td>{{ $row->notes }}</td>
-                                        <td>{{ $row->created_at }}</td>
-                                        <td>{{ $row->updated_at }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
                                         </td>
@@ -95,10 +92,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
+                                        <th>Pictogram</th>
+                                        <th>Notes</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -115,6 +110,7 @@
     Content body end
 ***********************************-->
 @include('characteristic.form.add')
+@include('characteristic.form.detail')
 @include('characteristic.form.edit')
 @include('characteristic.form.delete')
 @endsection

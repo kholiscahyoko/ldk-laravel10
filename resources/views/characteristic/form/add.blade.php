@@ -17,10 +17,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="notes">Notes <span class="text-danger">*</span>
+                        <label class="col-lg-4 col-form-label" for="notes">Notes
                         </label>
                         <div class="col-lg-6">
-                            <textarea class="form-control" id="notes" name="notes" placeholder="Enter notes"  cols="30" rows="10" required></textarea>
+                            <textarea class="form-control" id="notes" name="notes" placeholder="Enter notes"  cols="30" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

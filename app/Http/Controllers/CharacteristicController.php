@@ -49,7 +49,6 @@ class CharacteristicController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'characteristic_name' => 'required|min:5',
-            'notes' => 'required|min:5',
             'pictogram' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -64,6 +63,7 @@ class CharacteristicController extends Controller
             'characteristic_name' => $request->characteristic_name,
             'notes' => $request->notes,
             'pictogram' => $imgPath,
+            'created_by' => Auth::user()->id,
         ]);
         return redirect('/characteristic')->with('success', 'Data has been saved successfully');
     }
@@ -71,7 +71,6 @@ class CharacteristicController extends Controller
     public function update(Request $request, $id){
         $this->validate($request,[
             'characteristic_name' => 'required|min:5',
-            'notes' => 'required|min:5',
             // 'pictogram' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -83,6 +82,7 @@ class CharacteristicController extends Controller
 
         $data->characteristic_name = $request->characteristic_name;
         $data->notes = $request->notes;
+        $data->updated_by = Auth::user()->id;
 
         if($request->hasFile('pictogram')){
             if(!empty($data->pictogram)){
@@ -102,7 +102,7 @@ class CharacteristicController extends Controller
     }
 
     public function get($id){
-        $data = Characteristic::find($id);
+        $data = Characteristic::with(['createdBy', 'updatedBy'])->find($id);
 
         if(!$data){
             return response()->json(['error' => 'Data not found'], 404);
@@ -131,6 +131,4 @@ class CharacteristicController extends Controller
 
         return redirect('/characteristic')->with('success', 'Data has been deleted successfully');
     }
-
-
 }

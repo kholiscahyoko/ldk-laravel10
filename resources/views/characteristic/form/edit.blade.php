@@ -20,7 +20,7 @@
                         <label class="col-lg-4 col-form-label" for="edit_notes">Notes <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <textarea class="form-control" id="edit_notes" name="notes" placeholder="Enter notes"  cols="30" rows="10" required></textarea>
+                            <textarea class="form-control" id="edit_notes" name="notes" placeholder="Enter notes"  cols="30" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
