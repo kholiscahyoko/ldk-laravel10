@@ -101,6 +101,7 @@
                                             @endswitch
                                         </td>
                                         <td>
+                                            <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
                                         </td>
@@ -133,6 +134,7 @@
 @include('master_bk.form.add')
 @include('master_bk.form.review')
 @include('ldk.form.add')
+@include('master_bk.form.detail')
 @include('master_bk.form.delete')
 @include('master_bk.form.edit')
 

@@ -127,7 +127,7 @@ class MasterBkController extends Controller
     }
 
     public function get($id){
-        $data = MasterBk::find($id);
+        $data = MasterBk::with(['createdBy', 'updatedBy'])->find($id);
 
         if(!$data){
             return response()->json(['error' => 'Data not found'], 404);

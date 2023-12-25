@@ -26,10 +26,24 @@
                             <p class="text-justify" id="detail_maker"></p>
                         </div>
                     </div>
-                    <div class="col-12 mb-2">
+                    <div class="col-6 mb-2">
                         <h5>LDK from Maker</h5>
                         <div class="card-content">
-                            <p class="text-justify" id="detail_ldk_fr_maker"></p>
+                            <div id="detail_ldk_fr_maker">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2">
+                        <h5>Status</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_status_bk"></p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <h5>Comment</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_comment"></p>
                         </div>
                     </div>
                     <div class="col-6 mb-2">
@@ -69,7 +83,7 @@
     function showModalDetail(id){
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', '/characteristic/' + id, true);
+        xhr.open('GET', '/master_bk/' + id, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Parse the JSON response
@@ -79,21 +93,17 @@
                 var data = responseData.data;
                 console.log(data);
 
-                detail_pictogram = document.getElementById('detail_pictogram');
-                detail_pictogram.innerHTML = "";
-                let img = new Image();
-                img.setAttribute('class', "img-thumbnail col");
-                img.style = "max-width:100px;";
-                img.src = `/storage/${data.pictogram}`;
-                detail_pictogram.appendChild(img);
-
-                document.getElementById('detail_characteristic_name').innerHTML = data.characteristic_name ?? "Not Set";
-                document.getElementById('detail_notes').innerHTML = data.notes ?? "Not Set";
+                document.getElementById('detail_material_number').innerHTML = data.material_number ?? "Not Set";
+                document.getElementById('detail_material_desc').innerHTML = data.material_desc ?? "Not Set";
+                document.getElementById('detail_maker').innerHTML = data.maker ?? "Not Set";
+                document.getElementById('detail_ldk_fr_maker').innerHTML = `<a class="badge badge-primary p-2" href="/storage/${data.ldk_fr_maker}" target="_blank" id="detail_ldk_fr_maker">Show LDK</a>` ?? `<p class="text-justify" id="detail_updated_by">Not Set</p>`;
+                document.getElementById('detail_status_bk').innerHTML = (data.status_bk === "0") ? 'Need Review' : (data.status_bk === "1") ? 'Rejected' : (data.status_bk === "2") ? 'Active' : 'Unknown';
+                document.getElementById('detail_comment').innerHTML = data.comment ?? "Not Set";
                 document.getElementById('detail_created_by').innerHTML = data.created_by?.name ?? "Not Set";
                 document.getElementById('detail_created_at').innerHTML = convertToLongDate(data.created_at) ?? "Not Set";
                 document.getElementById('detail_updated_by').innerHTML = data.updated_by?.name ?? "Not Set";
                 document.getElementById('detail_updated_at').innerHTML = convertToLongDate(data.updated_at) ?? "Not Set";
-                document.getElementById('btnEditDetail').onclick = `showModalEdit(${id});`;
+                document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);

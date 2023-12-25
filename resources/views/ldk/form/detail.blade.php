@@ -229,7 +229,7 @@
                 document.getElementById('detail_regulation').innerHTML = data.regulation ?? "Not Set";
                 document.getElementById('detail_shipping').innerHTML = data.shipping ?? "Not Set";
                 document.getElementById('detail_others_info').innerHTML = data.others_info ?? "Not Set";
-                document.getElementById('btnEditDetail').onclick = `showModalEdit(${id});`;
+                document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);
