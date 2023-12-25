@@ -111,7 +111,7 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        $data = Location::with('master_bk')->find($id);
+        $data = Location::with(['master_bk', 'createdBy', 'updatedBy'])->find($id);
 
         if(!$data){
             return response()->json(['error' => 'Material Number not found'], 404);

@@ -86,6 +86,10 @@ class MasterBkController extends Controller
             return redirect('/master_bk')->with('error', 'Data is not found');
         }
 
+        if($data->status_bk === '1'){
+            $data->status_bk = '0';
+        }
+
         $data->material_number = $request->material_number;
         $data->material_desc = $request->material_desc;
         $data->maker = $request->maker;

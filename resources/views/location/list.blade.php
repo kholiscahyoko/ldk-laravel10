@@ -85,6 +85,7 @@
                                         <td>{{ $row->created_at }}</td>
                                         <td>{{ $row->updated_at }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
                                         </td>
@@ -118,6 +119,7 @@
     Content body end
 ***********************************-->
 @include('location.form.add')
+@include('location.form.detail')
 @include('location.form.edit')
 @include('location.form.delete')
 
