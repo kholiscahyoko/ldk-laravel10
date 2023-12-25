@@ -174,7 +174,9 @@
             </div>
             <div class="modal-footer">
                 <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @canany(['manage-ldk'])
                 <button id="btnEditDetail" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editModal" onclick="">Edit</button>
+                @endcanany
             </div>
         </div>
     </div>
@@ -229,7 +231,9 @@
                 document.getElementById('detail_regulation').innerHTML = data.regulation ?? "Not Set";
                 document.getElementById('detail_shipping').innerHTML = data.shipping ?? "Not Set";
                 document.getElementById('detail_others_info').innerHTML = data.others_info ?? "Not Set";
+                @canany(['manage-ldk'])
                 document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
+                @endcanany
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);

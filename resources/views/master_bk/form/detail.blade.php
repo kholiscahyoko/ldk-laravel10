@@ -74,7 +74,9 @@
             </div>
             <div class="modal-footer">
                 <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @canany(['manage-master-bk'])
                 <button id="btnEditDetail" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editModal" onclick="">Edit</button>
+                @endcanany
             </div>
         </div>
     </div>
@@ -103,7 +105,9 @@
                 document.getElementById('detail_created_at').innerHTML = convertToLongDate(data.created_at) ?? "Not Set";
                 document.getElementById('detail_updated_by').innerHTML = data.updated_by?.name ?? "Not Set";
                 document.getElementById('detail_updated_at').innerHTML = convertToLongDate(data.updated_at) ?? "Not Set";
+                @canany(['manage-master-bk'])
                 document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
+                @endcanany
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);

@@ -21,10 +21,12 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Lembar Data Keselamatan</h4>
+                            @canany(['manage-ldk'])
                             <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createLdkModal">
                                 <i class="fa fa-plus"></i>
                                 Add LDK
                             </button>
+                            @endcanany
                         </div>
                     </div>
                     <div class="card-body">
@@ -81,9 +83,13 @@
                                         <td>{{ $row->composition }}</td>
                                         <td>{{ $row->ph }}</td>
                                         <td>
+                                            @canany(['view-ldk'])
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
+                                            @endcanany
+                                            @canany(['manage-ldk'])
                                             <button type="button" class="btn btn-xs mb-1 btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>&nbsp;Edit</button>
                                             <button type="button" class="btn btn-xs mb-1 btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                            @endcanany
                                         </td>
                                     </tr>
                                     @endforeach
@@ -112,9 +118,14 @@
 <!--**********************************
     Content body end
 ***********************************-->
-@include('ldk.form.add')
+@canany(['view-ldk'])
 @include('ldk.form.detail')
+@endcanany
+@canany(['manage-ldk'])
+@include('ldk.form.add')
 @include('ldk.form.edit')
 @include('ldk.form.delete')
+@endcanany
+
 
 @endsection

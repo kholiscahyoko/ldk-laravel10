@@ -21,10 +21,12 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">List Characteristic</h4>
+                            @canany(['manage-characteristic'])
                             <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createModal">
                                 <i class="fa fa-plus"></i>
                                 Add Characteristic
                             </button>
+                            @endcanany
                         </div>
                     </div>
                     <div class="card-body">
@@ -81,9 +83,13 @@
                                         </td>
                                         <td>{{ $row->notes }}</td>
                                         <td>
+                                            @canany(['view-characteristic'])
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
+                                            @endcanany
+                                            @canany(['manage-characteristic'])
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
+                                            @endcanany
                                         </td>
                                     </tr>
                                     @endforeach
@@ -109,8 +115,12 @@
 <!--**********************************
     Content body end
 ***********************************-->
-@include('characteristic.form.add')
+@canany(['view-characteristic'])
 @include('characteristic.form.detail')
+@endcanany
+@canany(['manage-characteristic'])
+@include('characteristic.form.add')
 @include('characteristic.form.edit')
 @include('characteristic.form.delete')
+@endcanany
 @endsection
