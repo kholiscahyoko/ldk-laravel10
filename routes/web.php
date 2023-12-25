@@ -25,7 +25,6 @@ use App\Http\Controllers\LdkController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/master_bk', [App\Http\Controllers\MasterBkController::class, 'index'])->name('master_bk');
 
 Route::controller(MasterBkController::class)->group(function(){
     Route::get('/master_bk', 'index');
