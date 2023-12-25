@@ -42,6 +42,7 @@ class MasterBkController extends Controller
             "/assets/plugins/tables/js/datatable-init/datatable-basic.min.js",
             "/assets/plugins/validation/jquery.validate.min.js",
             "/assets/js/master_bk-validation-init.js",
+            "/assets/js/ldk-validation-init.js",
         ];
         return view('master_bk.list', $data);
     }
@@ -101,6 +102,25 @@ class MasterBkController extends Controller
             $pdfPath = $request->file('ldk_fr_maker')->storeAs('ldk_fr_maker', $newFileName, 'public');
             $data->ldk_fr_maker = $pdfPath;
         }
+
+        $data->save();
+        return redirect('/master_bk')->with('success', 'Data has been updated successfully');
+    }
+
+    public function reject(Request $request, $id){
+        $this->validate($request,[
+            'comment' => 'required',
+        ]);
+
+        $data = MasterBk::find($id);
+
+        if(!$data){
+            return redirect('/master_bk')->with('error', 'Data is not found');
+        }
+
+        $data->comment = $request->comment;
+        $data->status_bk = '1';
+        $data->updated_by = Auth::user()->id;
 
         $data->save();
         return redirect('/master_bk')->with('success', 'Data has been updated successfully');

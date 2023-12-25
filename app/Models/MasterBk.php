@@ -22,6 +22,7 @@ class MasterBk extends Model
         'material_desc',
         'maker',
         'ldk_fr_maker',
+        'status_bk',
         'created_by',
         'updated_by',
         'deleted_by',

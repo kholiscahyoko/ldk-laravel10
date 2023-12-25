@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Lembar Data Keselamatan</h4>
-                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createModal">
+                            <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#createLdkModal">
                                 <i class="fa fa-plus"></i>
                                 Add LDK
                             </button>

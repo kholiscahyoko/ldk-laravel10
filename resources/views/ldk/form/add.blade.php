@@ -1,19 +1,19 @@
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+<div class="modal fade" id="createLdkModal" tabindex="-1" role="dialog" aria-labelledby="createLdkModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-valide" id="createForm" action="/ldk/store" method="post">
+            <form class="form-valide" id="createLdkForm" action="/ldk/store" method="post">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Create LDK</h5>
+                    <h5 class="modal-title" id="createLdkModalLabel">Create LDK</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col">
-                            <label for="material_number">Material Number <span class="text-danger">*</span></label>
+                            <label for="ldk_material_number">Material Number <span class="text-danger">*</span></label>
                             <div>
-                                <input type="text" class="form-control" id="material_number" name="material_number" placeholder="Enter material number" required>
+                                <input type="text" class="form-control" id="ldk_material_number" name="material_number" placeholder="Enter material number" required>
                             </div>
                         </div>
                         <div class="form-group col">

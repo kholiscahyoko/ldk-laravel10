@@ -87,7 +87,7 @@
                                         <td>
                                             @switch($row->status_bk)
                                                 @case(0)
-                                                    <span class="badge badge-primary p-2">Need Review</span>
+                                                    <button type="button" class="btn btn-xs btn-primary p-1 cta-review" data-toggle="modal" data-target="#reviewModal" onclick="document.getElementById('review_material_number').value = '{{ $row->material_number }}';document.getElementById('reviewForm').action = `/master_bk/reject/{{ $row->id }}`">Need Review</button>
                                                     @break
                                                 @case(1)
                                                     <span class="badge badge-danger p-2">Rejected</span>
@@ -131,6 +131,8 @@
     Content body end
 ***********************************-->
 @include('master_bk.form.add')
+@include('master_bk.form.review')
+@include('ldk.form.add')
 @include('master_bk.form.delete')
 @include('master_bk.form.edit')
 

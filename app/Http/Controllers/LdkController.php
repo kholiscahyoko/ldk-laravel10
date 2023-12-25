@@ -102,6 +102,12 @@ class LdkController extends Controller
         ]);
 
         $ldk->characteristic()->attach($request->characteristic);
+
+        $master_bk->status_bk = '2';
+        $master_bk->comment = null;
+        $master_bk->updated_by = Auth::user()->id;
+        $master_bk->save();
+
         return redirect('/ldk')->with('success', 'Data has been saved successfully');
     }
 

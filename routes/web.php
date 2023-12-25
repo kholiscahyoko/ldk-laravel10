@@ -31,6 +31,7 @@ Route::controller(MasterBkController::class)->group(function(){
     Route::get('/master_bk/{id}', 'get');
     Route::post('/master_bk/store', 'store');
     Route::post('/master_bk/update/{id}', 'update');
+    Route::post('/master_bk/reject/{id}', 'reject');
     Route::post('/master_bk/destroy/{id}', 'destroy');
 });
 
