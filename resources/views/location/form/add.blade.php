@@ -20,7 +20,27 @@
                         <label class="col-lg-4 col-form-label" for="location">Location <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter material location" required>
+                            <select name="location" id="location" class="form-control">
+                                <option>Select Location</option>
+                                <option value="waho">WAHO</option>
+                                <option value="melting">MELTING</option>
+                                <option value="engineering">ENGINEERING</option>
+                                <option value="welding">WELDING</option>
+                                <option value="machining">MACHINING</option>
+                                <option value="put">PUT</option>
+                                <option value="pc">PC</option>
+                                <option value="tsd">TSD</option>
+                                <option value="obm">OBM</option>
+                                <option value="fpr">FPR</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="other_location">Other Location
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="other_location" name="other_location" placeholder="Enter location" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -60,3 +80,14 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('location').addEventListener("change", function(e){
+        if(this.value === "other"){
+            document.getElementById("other_location").disabled = false;
+            document.getElementById("other_location").required = true;
+        }else{
+            document.getElementById("other_location").disabled = true;
+            document.getElementById("other_location").required = false;
+        }
+    });
+</script>

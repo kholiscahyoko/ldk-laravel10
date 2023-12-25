@@ -51,8 +51,9 @@ class LocationController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'material_number' => 'required|min:5',
-            'location' => 'required|min:5',
-            'uom' => 'required|min:5',
+            'location' => 'required',
+            'other_location' => 'required_if:location,other',
+            'uom' => 'required',
             'qty' => 'required|numeric',
             'pic_nrp' => 'required|min:5',
             'pic_name' => 'required|min:3',
@@ -66,7 +67,7 @@ class LocationController extends Controller
 
         Location::create([
             'material_id' => $material->id,
-            'location' => $request->location,
+            'location' => $request->location !== 'other' ? $request->location : $request->other_location,
             'uom' => $request->uom,
             'qty' => $request->qty,
             'pic_nrp' => $request->pic_nrp,
@@ -84,8 +85,9 @@ class LocationController extends Controller
     {
         $this->validate($request,[
             'material_number' => 'required|min:5',
-            'location' => 'required|min:5',
-            'uom' => 'required|min:5',
+            'location' => 'required',
+            'other_location' => 'required_if:location,other',
+            'uom' => 'required',
             'qty' => 'required|numeric',
             'pic_nrp' => 'required|min:5',
             'pic_name' => 'required|min:3',

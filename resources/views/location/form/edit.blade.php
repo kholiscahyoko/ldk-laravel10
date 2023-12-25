@@ -20,7 +20,27 @@
                         <label class="col-lg-4 col-form-label" for="edit_location">Location <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="edit_location" name="location" placeholder="Enter material location" required>
+                            <select name="location" id="edit_location" class="form-control">
+                                <option>Select Location</option>
+                                <option value="waho">WAHO</option>
+                                <option value="melting">MELTING</option>
+                                <option value="engineering">ENGINEERING</option>
+                                <option value="welding">WELDING</option>
+                                <option value="machining">MACHINING</option>
+                                <option value="put">PUT</option>
+                                <option value="pc">PC</option>
+                                <option value="tsd">TSD</option>
+                                <option value="obm">OBM</option>
+                                <option value="fpr">FPR</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="edit_other_location">Other Location
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="edit_other_location" name="other_location" placeholder="Enter location" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -75,6 +95,19 @@
 
                 document.getElementById('edit_material_number').value = data.master_bk.material_number;
                 document.getElementById('edit_location').value = data.location;
+                if(typeof document.getElementById('edit_location').value === undefined || document.getElementById('edit_location').value === null || document.getElementById('edit_location').value.trim().length === 0){
+                    console.log("OTHER");
+                    document.getElementById('edit_location').value = 'other';
+                    document.getElementById('edit_other_location').value = data.location;
+                    document.getElementById("edit_other_location").disabled = false;
+                    document.getElementById("edit_other_location").required = true;
+                }else{
+                    console.log("NOT OTHER");
+                    console.log(document.getElementById('edit_location').value);
+                    document.getElementById('edit_other_location').value = null;
+                    document.getElementById("edit_other_location").disabled = true;
+                    document.getElementById("edit_other_location").required = false;
+                }
                 document.getElementById('edit_uom').value = data.uom;
                 document.getElementById('edit_qty').value = data.qty;
                 document.getElementById('edit_pic_nrp').value = data.pic_nrp;
@@ -88,4 +121,15 @@
 
         xhr.send();
     }
+
+    document.getElementById('edit_location').addEventListener("change", function(e){
+        if(this.value === "other"){
+            document.getElementById("edit_other_location").disabled = false;
+            document.getElementById("edit_other_location").required = true;
+        }else{
+            document.getElementById("edit_other_location").disabled = true;
+            document.getElementById("edit_other_location").required = false;
+        }
+    });
+
 </script>
