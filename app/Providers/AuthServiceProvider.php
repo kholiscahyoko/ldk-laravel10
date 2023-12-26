@@ -53,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
             return $this->has_all_access() || in_array(Auth::user()->role, ['ehs', 'waho', 'purchasing', 'other']);
         });
         Gate::define('manage-ldk', function () {
-            return $this->has_all_access() || in_array(Auth::user()->role, ['purchasing']);
+            return $this->has_all_access() || in_array(Auth::user()->role, ['ehs', 'purchasing']);
         });
     }
 
