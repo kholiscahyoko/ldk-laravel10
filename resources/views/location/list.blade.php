@@ -60,14 +60,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Transaction ID</th>
                                         <th>Material Number</th>
                                         <th>Location</th>
-                                        <th>UOM</th>
                                         <th>Quantity</th>
-                                        <th>PIC NRP</th>
-                                        <th>PIC Name</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -78,14 +74,10 @@
                                     @foreach ($data as $row)
                                     <tr>
                                         <td>{{ $no++}}</td>
+                                        <td>{{ $row->id }}</td>
                                         <td>{{ $row->master_bk->material_number }}</td>
                                         <td>{{ $row->location }}</td>
-                                        <td>{{ $row->uom }}</td>
                                         <td>{{ $row->qty }}</td>
-                                        <td>{{ $row->pic_nrp }}</td>
-                                        <td>{{ $row->pic_name }}</td>
-                                        <td>{{ $row->created_at }}</td>
-                                        <td>{{ $row->updated_at }}</td>
                                         <td>
                                             @canany(['view-location'])
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
