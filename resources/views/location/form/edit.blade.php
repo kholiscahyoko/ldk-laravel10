@@ -17,6 +17,23 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="edit_plant">Plant Location <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <select name="plant" id="edit_plant" class="form-control">
+                                <option>Select Plant</option>
+                                <option value="Plant Sunter">Plant Sunter</option>
+                                <option value="Plant Pegangsaan">Plant Pegangsaan</option>
+                                <option value="Plant Cikarang">Plant Cikarang</option>
+                                <option value="Plant Karawang">Plant Karawang</option>
+                                <option value="Plant Deltamas">Plant Deltamas</option>
+                                <option value="DMD Cikarang">DMD Cikarang</option>
+                                <option value="SRTC Deltamas">SRTC Deltamas</option>
+                                <option value="TSD Pulogadung">TSD Pulogadung</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-lg-4 col-form-label" for="edit_location">Location <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
@@ -94,15 +111,14 @@
                 var data = responseData.data;
 
                 document.getElementById('edit_material_number').value = data.master_bk.material_number;
+                document.getElementById('edit_plant').value = data.plant;
                 document.getElementById('edit_location').value = data.location;
                 if(typeof document.getElementById('edit_location').value === undefined || document.getElementById('edit_location').value === null || document.getElementById('edit_location').value.trim().length === 0){
-                    console.log("OTHER");
                     document.getElementById('edit_location').value = 'other';
                     document.getElementById('edit_other_location').value = data.location;
                     document.getElementById("edit_other_location").disabled = false;
                     document.getElementById("edit_other_location").required = true;
                 }else{
-                    console.log("NOT OTHER");
                     console.log(document.getElementById('edit_location').value);
                     document.getElementById('edit_other_location').value = null;
                     document.getElementById("edit_other_location").disabled = true;

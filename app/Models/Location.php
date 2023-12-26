@@ -20,6 +20,7 @@ class Location extends Model
      */
     protected $fillable = [
         'material_id',
+        'plant',
         'location',
         'uom',
         'qty',

@@ -17,11 +17,28 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="location">Location <span class="text-danger">*</span>
+                        <label class="col-lg-4 col-form-label" for="plant">Plant Location <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <select name="plant" id="plant" class="form-control">
+                                <option>Select Plant</option>
+                                <option value="Plant Sunter">Plant Sunter</option>
+                                <option value="Plant Pegangsaan">Plant Pegangsaan</option>
+                                <option value="Plant Cikarang">Plant Cikarang</option>
+                                <option value="Plant Karawang">Plant Karawang</option>
+                                <option value="Plant Deltamas">Plant Deltamas</option>
+                                <option value="DMD Cikarang">DMD Cikarang</option>
+                                <option value="SRTC Deltamas">SRTC Deltamas</option>
+                                <option value="TSD Pulogadung">TSD Pulogadung</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="location">Section Location <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
                             <select name="location" id="location" class="form-control">
-                                <option>Select Location</option>
+                                <option>Select Section</option>
                                 <option value="waho">WAHO</option>
                                 <option value="melting">MELTING</option>
                                 <option value="engineering">ENGINEERING</option>

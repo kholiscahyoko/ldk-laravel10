@@ -45,12 +45,14 @@ class LocationController extends Controller
         return view('location.list', $data);
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
         $this->validate($request,[
             'material_number' => 'required|min:5',
+            'plant' => 'required',
             'location' => 'required',
             'other_location' => 'required_if:location,other',
             'uom' => 'required',
@@ -67,6 +69,7 @@ class LocationController extends Controller
 
         Location::create([
             'material_id' => $material->id,
+            'plant' => $request->plant,
             'location' => $request->location !== 'other' ? $request->location : $request->other_location,
             'uom' => $request->uom,
             'qty' => $request->qty,
@@ -85,6 +88,7 @@ class LocationController extends Controller
     {
         $this->validate($request,[
             'material_number' => 'required|min:5',
+            'plant' => 'required',
             'location' => 'required',
             'other_location' => 'required_if:location,other',
             'uom' => 'required',
@@ -100,6 +104,7 @@ class LocationController extends Controller
         }
         Location::find($id)->update([
             'material_id' => $material->id,
+            'plant' => $request->plant,
             'location' => $request->location,
             'uom' => $request->uom,
             'qty' => $request->qty,

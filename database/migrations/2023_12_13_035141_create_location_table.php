@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('master_bk');
+            $table->string('plant')->comment('Plant Sunter | Plant Pegangsaan | Plant Cikarang | Plant Karawang | Plant Deltamas | DMD Cikarang | SRTC Deltamas | TSD Pulogadung');
             $table->string('location')->comment('WAHO | MELTING | ENGINEERING | WELDING | MACHINING | PUT | PC | TSD | OBM | FPR | Lainnya (input freetext)');
             $table->string('uom')->nullable();
             $table->integer('qty');

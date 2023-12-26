@@ -27,7 +27,13 @@
                         </div>
                     </div>
                     <div class="col-4 mb-2">
-                        <h5>Material Location</h5>
+                        <h5>Material Plant Location</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_plant"></p>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
+                        <h5>Material Section Location</h5>
                         <div class="card-content">
                             <p class="text-justify" id="detail_location"></p>
                         </div>
@@ -102,6 +108,7 @@
                 document.getElementById('detail_material_number').innerHTML = data.master_bk.material_number ?? "Not Set";
                 document.getElementById('detail_material_desc').innerHTML = data.master_bk.material_desc ?? "Not Set";
                 document.getElementById('detail_ldk_number').innerHTML = data.master_bk.ldk?.ldk_number ?? "Not Set";
+                document.getElementById('detail_plant').innerHTML = data.plant ?? "Not Set";
                 document.getElementById('detail_location').innerHTML = data.location ?? "Not Set";
                 document.getElementById('detail_uom').innerHTML = data.uom ?? "Not Set";
                 document.getElementById('detail_qty').innerHTML = data.qty ?? "Not Set";
@@ -111,9 +118,6 @@
                 document.getElementById('detail_created_at').innerHTML = convertToLongDate(data.created_at) ?? "Not Set";
                 document.getElementById('detail_updated_by').innerHTML = data.updated_by?.name ?? "Not Set";
                 document.getElementById('detail_updated_at').innerHTML = convertToLongDate(data.updated_at) ?? "Not Set";
-                @canany(['manage-location'])
-                document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
-                @endcanany
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);
