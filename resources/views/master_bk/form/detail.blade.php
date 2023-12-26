@@ -72,12 +72,6 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                @canany(['manage-master-bk'])
-                <button id="btnEditDetail" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editModal" onclick="">Edit</button>
-                @endcanany
-            </div>
         </div>
     </div>
 </div>

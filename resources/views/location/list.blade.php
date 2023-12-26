@@ -90,6 +90,11 @@
                                             @canany(['view-location'])
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
                                             @endcanany
+                                            @if($row->master_bk->ldk)
+                                            @canany(['view-ldk'])
+                                            <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailLdkModal" onclick="showLdkModalDetail({{ $row->master_bk->ldk->id }});"><i class="fa fa-eye"></i>&nbsp;LDK</button>
+                                            @endcanany
+                                            @endif
                                             @canany(['manage-location'])
                                             <button type="button" class="btn btn-xs btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>Edit</button>
                                             <button type="button" class="btn btn-xs btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-delete"></i>Delete</button>
@@ -112,6 +117,9 @@
 ***********************************-->
 @canany(['view-location'])
 @include('location.form.detail')
+@endcanany
+@canany(['view-ldk'])
+@include('ldk.form.detail')
 @endcanany
 @canany(['manage-location'])
 @include('location.form.add')

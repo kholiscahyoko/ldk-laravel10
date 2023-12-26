@@ -1,8 +1,8 @@
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailLdkModal" tabindex="-1" role="dialog" aria-labelledby="detailLdkModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailModalLabel">LDK Detail</h5>
+                <h5 class="modal-title" id="detailLdkModalLabel">LDK Detail</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -15,13 +15,13 @@
                         </div>
                     </div>
                     <div class="col-4 mb-2">
-                        <h5 >Material Number</h5>
+                        <h5>Material Number</h5>
                         <div class="card-content">
                             <p class="text-justify" id="detail_material_number"></p>
                         </div>
                     </div>
                     <div class="col-4 mb-2">
-                        <h5 >Description</h5>
+                        <h5>Description</h5>
                         <div class="card-content">
                             <p class="text-justify" id="detail_material_desc"></p>
                         </div>
@@ -178,17 +178,11 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                @canany(['manage-ldk'])
-                <button id="btnEditDetail" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editModal" onclick="">Edit</button>
-                @endcanany
-            </div>
         </div>
     </div>
 </div>
 <script>
-    function showModalDetail(id){
+    function showLdkModalDetail(id){
         var xhr = new XMLHttpRequest();
 
         xhr.open('GET', '/ldk/' + id, true);
@@ -210,10 +204,10 @@
                     img.src = `/storage/${data.characteristic[i].pictogram}`;
                     detail_characteristic.appendChild(img);
                 }
-                document.getElementById('detail_material_number').innerHTML = data.master_bk.material_number;
-                document.getElementById('detail_material_desc').innerHTML = data.master_bk.material_desc;
+                document.querySelector('#detailLdkModal #detail_material_number').innerHTML = data.master_bk.material_number;
+                document.querySelector('#detailLdkModal #detail_material_desc').innerHTML = data.master_bk.material_desc;
 
-                document.getElementById('detail_ldk_number').innerHTML = data.ldk_number ?? "Not Set";
+                document.querySelector('#detailLdkModal #detail_ldk_number').innerHTML = data.ldk_number ?? "Not Set";
                 document.getElementById('detail_revision_number').innerHTML = data.revision_number ?? "Not Set";
                 document.getElementById('detail_composition').innerHTML = data.composition ?? "Not Set";
                 document.getElementById('detail_reactivity').innerHTML = data.reactivity ?? "Not Set";
@@ -238,9 +232,6 @@
                 document.getElementById('detail_regulation').innerHTML = data.regulation ?? "Not Set";
                 document.getElementById('detail_shipping').innerHTML = data.shipping ?? "Not Set";
                 document.getElementById('detail_others_info').innerHTML = data.others_info ?? "Not Set";
-                @canany(['manage-ldk'])
-                document.getElementById('btnEditDetail').setAttribute('onclick', `showModalEdit(${id});`);
-                @endcanany
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);
