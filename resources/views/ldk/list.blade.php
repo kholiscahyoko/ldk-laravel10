@@ -87,7 +87,7 @@
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>
                                             @endcanany
                                             @canany(['manage-ldk'])
-                                            <button type="button" class="btn btn-xs mb-1 btn-primary cta-edit" data-toggle="modal" data-target="#editModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>&nbsp;Edit</button>
+                                            <button type="button" class="btn btn-xs mb-1 btn-primary cta-edit" data-toggle="modal" data-target="#editLdkModal" onclick="showModalEdit({{ $row->id }});"><i class="fa fa-edit"></i>&nbsp;Edit</button>
                                             <button type="button" class="btn btn-xs mb-1 btn-danger cta-delete" data-toggle="modal" data-target="#deleteModal" onclick="showModalDelete({{ $row->id }});"><i class="fa fa-trash"></i>&nbsp;Delete</button>
                                             @endcanany
                                         </td>

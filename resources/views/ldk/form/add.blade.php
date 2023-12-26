@@ -19,7 +19,7 @@
                         <div class="form-group col">
                             <label for="material_number">LDK Number <span class="text-danger">*</span></label>
                             <div>
-                                <input type="text" class="form-control" id="ldk_number" name="ldk_number" placeholder="Enter LDK number" required>
+                                <input type="text" class="form-control" id="ldk_number" name="ldk_number" placeholder="Enter LDK number" disabled>
                             </div>
                         </div>
                     </div>
@@ -245,4 +245,12 @@
         xhr.send();
     }
     getCharacteristics();
+    function get_date_dmy(){
+        let date = new Date();
+
+        let date_dmy = `${date.getDate().toString().padStart(2, '0')}`+`${(date.getMonth() + 1).toString().padStart(2, '0')}`+`${date.getFullYear().toString().slice(-2)}`;
+
+        return date_dmy
+    }
+    document.getElementById('ldk_number').value = `LDK${get_date_dmy()}0000`;
 </script>

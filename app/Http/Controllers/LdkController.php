@@ -57,11 +57,11 @@ class LdkController extends Controller
                 'required',
                 Rule::exists(MasterBk::class, 'material_number'),
             ],
-            'ldk_number' => 'required|min:5',
             'revision_number' => 'required|numeric',
             'characteristic' => 'required|array',
             'characteristic.*' => Rule::exists(Characteristic::class, 'id'),
         ]);
+
 
         $master_bk = MasterBk::where('material_number', $request->material_number)->first();
 
@@ -71,9 +71,17 @@ class LdkController extends Controller
         if(Ldk::where('material_id', $master_bk->id)->first())
             return redirect('/ldk')->with('error', 'Material Number is already existed');
 
+        do {
+            $today = Carbon::today();
+            $count = (int) Ldk::whereDate('created_at', $today)->count();
+            $count++;
+            $ldk_number = "LDK".$today->format('dmy').str_pad($count, 4, '0', STR_PAD_LEFT);
+        } while (Ldk::where('ldk_number', $ldk_number)->first());
+    
+
         $ldk = Ldk::create([
             'material_id' => $master_bk->id,
-            'ldk_number' => $request->ldk_number,
+            'ldk_number' => $ldk_number,
             'revision_number' => $request->revision_number,
             'reactivity' => $request->reactivity,
             'composition' => $request->composition,
@@ -118,7 +126,6 @@ class LdkController extends Controller
                 'required',
                 Rule::exists(MasterBk::class, 'material_number'),
             ],
-            'ldk_number' => 'required|min:5',
             'revision_number' => 'required|numeric',
             'characteristic' => 'required|array',
             'characteristic.*' => Rule::exists(Characteristic::class, 'id'),
@@ -141,7 +148,6 @@ class LdkController extends Controller
             return redirect('/ldk')->with('error', 'LDK is not found');
 
         $ldk->material_id = $master_bk->id;
-        $ldk->ldk_number = $request->ldk_number;
         $ldk->revision_number = $request->revision_number;
         $ldk->reactivity = $request->reactivity;
         $ldk->composition = $request->composition;

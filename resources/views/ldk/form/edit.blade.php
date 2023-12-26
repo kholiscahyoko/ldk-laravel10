@@ -1,10 +1,10 @@
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="editLdkModal" tabindex="-1" role="dialog" aria-labelledby="editLdkModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-valide" id="editForm" action="/ldk/update" method="post">
+            <form class="form-valide" id="editLdkForm" action="/ldk/update" method="post">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit LDK</h5>
+                    <h5 class="modal-title" id="editLdkModalLabel">Edit LDK</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -19,7 +19,7 @@
                         <div class="form-group col">
                             <label for="edit_material_number">LDK Number <span class="text-danger">*</span></label>
                             <div>
-                                <input type="text" class="form-control" id="edit_ldk_number" name="ldk_number" placeholder="Enter LDK number" required>
+                                <input type="text" class="form-control" id="edit_ldk_number" name="ldk_number" placeholder="Enter LDK number" disabled>
                             </div>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                 document.getElementById('edit_shipping').value = data.shipping;
                 document.getElementById('edit_others_info').value = data.others_info;
 
-                document.getElementById('editForm').action = `/ldk/update/${data.id}`;
+                document.getElementById('editLdkForm').action = `/ldk/update/${data.id}`;
             } else if (xhr.readyState === 4) {
                 // Handle errors or other status codes
                 console.error(xhr.status, xhr.statusText);
