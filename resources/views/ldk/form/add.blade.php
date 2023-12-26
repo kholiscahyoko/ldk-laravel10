@@ -1,5 +1,5 @@
 <div class="modal fade" id="createLdkModal" tabindex="-1" role="dialog" aria-labelledby="createLdkModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form class="form-valide" id="createLdkForm" action="/ldk/store" method="post">
                 @csrf
@@ -10,6 +10,106 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-12"><h5>GENERAL INFORMATION</h5></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="ldk_registration_date">Registration Date</label>
+                                    <div>
+                                        <input type="text" class="form-control" id="ldk_registration_date" name="ldk_registration_date" value="26-12-2023" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="revision_number">Revision Number <span class="text-danger">*</span></label>
+                                    <div>
+                                        <input type="number" class="form-control" id="revision_number" name="revision_number" placeholder="Enter revision number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="material_number">LDK Number <span class="text-danger">*</span></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="ldk_number" name="ldk_number" placeholder="Enter LDK number" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="ldk_material_number">Material Number <span class="text-danger">*</span></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="ldk_material_number" name="material_number" placeholder="Enter material number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="ldk_material_desc">Description</label>
+                                    <div>
+                                        <input type="text" class="form-control" id="ldk_material_desc" name="material_desc" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="reactivity">Reactivity & Stability</label>
+                                    <div>
+                                        <input type="text" class="form-control" id="reactivity" name="reactivity" placeholder="Enter reactivity">
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="composition">Composition</label>
+                                    <div>
+                                        <textarea  class="form-control" id="composition" name="composition" cols="20" rows="3" placeholder="Enter composition"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label for="characteristic">Characteristic <span class="text-danger">*</span></label>
+                                    <small>(Hold Shift for Multiple)</small>
+                                    <div>
+                                        <select multiple="multiple" class="form-control" name="characteristic[]" id="characteristic" required></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><h5>HAZARD IDENTIFICATIONS</h5></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="hazard_eye">Jika kontak dengan mata <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="hazard_eye" name="hazard_eye" placeholder="Type...." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="hazard_skin">Jika kontak dengan kulit <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="hazard_skin" name="hazard_skin" placeholder="Type...." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="hazard_spill">Jika tertelan <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="hazard_spill" name="hazard_spill" placeholder="Type...." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="hazard_terhirup">Jika terhirup <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="hazard_terhirup" name="hazard_terhirup" placeholder="Type...." required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="hazard_other">Catatan Lainnya
+                                </label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="hazard_other" name="hazard_other" placeholder="Type...." required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="row">
                         <div class="form-group col">
                             <label for="ldk_material_number">Material Number <span class="text-danger">*</span></label>
                             <div>
@@ -56,13 +156,6 @@
                             <label for="melting_point">Melting Point</label>
                             <div>
                                 <input type="text" class="form-control" id="melting_point" name="melting_point" placeholder="Enter melting point">
-                            </div>
-                        </div>
-                        <div class="form-group col">
-                            <label for="characteristic">Characteristic <span class="text-danger">*</span></label>
-                            <small>(Hold Shift for Multiple)</small>
-                            <div>
-                                <select multiple="multiple" class="form-control" name="characteristic[]" id="characteristic" required></select>
                             </div>
                         </div>
                     </div>
@@ -205,7 +298,7 @@
                                 <textarea class="form-control" name="others_info" id="others_info" cols="30" rows="3" placeholder="Enter Others Info"></textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
