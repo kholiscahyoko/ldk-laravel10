@@ -53,7 +53,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="btn_submit_review" class="btn btn-primary d-none">Submit</button>
                 </div>
             </form>
         </div>
@@ -65,6 +65,7 @@
             document.getElementById('review_row_comment').classList.add("d-none");
             document.getElementById('review_row_ldk').classList.remove("d-none");
             document.getElementById('review_comment').required = false;
+            document.getElementById('btn_submit_review').classList.add("d-none");
         }
     });
     document.getElementById('review_reject').addEventListener('change', function(){
@@ -72,6 +73,7 @@
             document.getElementById('review_row_comment').classList.remove("d-none");
             document.getElementById('review_row_ldk').classList.add("d-none");
             document.getElementById('review_comment').required = true;
+            document.getElementById('btn_submit_review').classList.remove("d-none");
         }
     });
 </script>
