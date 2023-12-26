@@ -77,7 +77,7 @@
                                     <tr>
                                         <td>{{ $no++}}</td>
                                         <td>{{ $row->material_number }}</td>
-                                        <td>{{ $row->desc_item }}</td>
+                                        <td>{{ $row->material_desc }}</td>
                                         <td>{{ $row->maker }}</td>
                                         <td>
                                             @if (!empty($row->ldk_fr_maker))
