@@ -29,7 +29,7 @@ class LocationController extends Controller
     {
         $data = [
             'title' => 'Data Location',
-            'data' => Location::with('master_bk')->get()
+            'data' => Location::with('master_bk.ldk')->get()
         ];
 
         $data['styles'] = [

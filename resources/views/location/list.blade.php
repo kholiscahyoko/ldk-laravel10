@@ -62,6 +62,7 @@
                                         <th>No</th>
                                         <th>Transaction ID</th>
                                         <th>Material Number</th>
+                                        <th>LDK Number</th>
                                         <th>Location</th>
                                         <th>Quantity</th>
                                         <th>Action</th>
@@ -76,6 +77,13 @@
                                         <td>{{ $no++}}</td>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->master_bk->material_number }}</td>
+                                        <td>
+                                            @if($row->master_bk->ldk)
+                                            {{ $row->master_bk->ldk->ldk_number }}
+                                            @else
+                                            Not Set
+                                            @endif
+                                        </td>
                                         <td>{{ $row->location }}</td>
                                         <td>{{ $row->qty }}</td>
                                         <td>
