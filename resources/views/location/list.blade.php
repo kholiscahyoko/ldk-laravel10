@@ -62,9 +62,9 @@
                                         <th>No</th>
                                         <th>Transaction ID</th>
                                         <th>Material Number</th>
+                                        <th>Description</th>
                                         <th>LDK Number</th>
                                         <th>Location</th>
-                                        <th>Quantity</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -77,6 +77,7 @@
                                         <td>{{ $no++}}</td>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->master_bk->material_number }}</td>
+                                        <td>{{ $row->master_bk->material_desc }}</td>
                                         <td>
                                             @if($row->master_bk->ldk)
                                             {{ $row->master_bk->ldk->ldk_number }}
@@ -85,7 +86,6 @@
                                             @endif
                                         </td>
                                         <td>{{ $row->location }}</td>
-                                        <td>{{ $row->qty }}</td>
                                         <td>
                                             @canany(['view-location'])
                                             <button type="button" class="btn btn-xs mb-1 btn-success cta-detail" data-toggle="modal" data-target="#detailModal" onclick="showModalDetail({{ $row->id }});"><i class="fa fa-eye"></i>&nbsp;Detail</button>

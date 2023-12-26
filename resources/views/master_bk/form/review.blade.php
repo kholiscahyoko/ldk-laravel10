@@ -46,7 +46,7 @@
                             <label> Bahan Kimia will be set approved if LDK is created
                             </label>
                             <div>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createLdkModal" onclick="document.getElementById('ldk_material_number').value = document.getElementById('review_material_number').value;">Create LDK Now</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createLdkModal" onclick="document.getElementById('ldk_material_number').value = document.getElementById('review_material_number').value;getMaterialDesc(document.getElementById('ldk_material_number'));">Create LDK Now</button>
                             </div>
                         </div>
                     </div>

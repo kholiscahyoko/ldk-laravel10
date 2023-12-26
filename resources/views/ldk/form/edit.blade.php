@@ -13,7 +13,13 @@
                         <div class="form-group col">
                             <label for="edit_material_number">Material Number <span class="text-danger">*</span></label>
                             <div>
-                                <input type="text" class="form-control" id="edit_material_number" name="material_number" placeholder="Enter material number" required>
+                                <input type="text" class="form-control" id="edit_material_number" name="material_number" placeholder="Enter material number" required disabled>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label for="edit_material_description">Description</label>
+                            <div>
+                                <input type="text" class="form-control" id="edit_material_description" name="material_desc" placeholder="Enter material number" disabled>
                             </div>
                         </div>
                         <div class="form-group col">
@@ -259,6 +265,7 @@
                 console.log(data);
 
                 document.getElementById('edit_material_number').value = data.master_bk.material_number;
+                document.getElementById('edit_material_description').value = data.master_bk.material_desc;
                 characteristic_options = Array.from(document.querySelectorAll("#edit_characteristic option"));
                 for (let i = 0; i < data.characteristic.length; i++) {
                     characteristic_options.find(function(c){

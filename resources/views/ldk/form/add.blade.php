@@ -17,6 +17,12 @@
                             </div>
                         </div>
                         <div class="form-group col">
+                            <label for="ldk_description">Description</label>
+                            <div>
+                                <input type="text" class="form-control" id="ldk_description" name="ldk_description" placeholder="Fill material number to show" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group col">
                             <label for="material_number">LDK Number <span class="text-danger">*</span></label>
                             <div>
                                 <input type="text" class="form-control" id="ldk_number" name="ldk_number" placeholder="Enter LDK number" disabled>
@@ -253,4 +259,8 @@
         return date_dmy
     }
     document.getElementById('ldk_number').value = `LDK${get_date_dmy()}0000`;
+
+    document.getElementById('ldk_material_number').addEventListener('focusout', function(e){
+        getMaterialDesc(this);
+    })
 </script>

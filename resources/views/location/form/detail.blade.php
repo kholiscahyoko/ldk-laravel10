@@ -15,6 +15,18 @@
                         </div>
                     </div>
                     <div class="col-4 mb-2">
+                        <h5>Description</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_material_desc"></p>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
+                        <h5>LDK Number</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_ldk_number"></p>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
                         <h5>Material Location</h5>
                         <div class="card-content">
                             <p class="text-justify" id="detail_location"></p>
@@ -94,6 +106,8 @@
                 console.log(data);
 
                 document.getElementById('detail_material_number').innerHTML = data.master_bk.material_number ?? "Not Set";
+                document.getElementById('detail_material_desc').innerHTML = data.master_bk.material_desc ?? "Not Set";
+                document.getElementById('detail_ldk_number').innerHTML = data.master_bk.ldk?.ldk_number ?? "Not Set";
                 document.getElementById('detail_location').innerHTML = data.location ?? "Not Set";
                 document.getElementById('detail_uom').innerHTML = data.uom ?? "Not Set";
                 document.getElementById('detail_qty').innerHTML = data.qty ?? "Not Set";

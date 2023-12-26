@@ -63,8 +63,8 @@
                                         <th>Revision Number</th>
                                         <th>LDK Number</th>
                                         <th>Material Number</th>
+                                        <th>Description</th>
                                         <th>Reactivity</th>
-                                        <th>Composition</th>
                                         <th>PH</th>
                                         <th>Action</th>
                                     </tr>
@@ -79,8 +79,8 @@
                                         <td>{{ $row->revision_number }}</td>
                                         <td>{{ $row->ldk_number }}</td>
                                         <td>{{ $row->master_bk->material_number }}</td>
+                                        <td>{{ $row->master_bk->material_desc }}</td>
                                         <td>{{ $row->reactivity }}</td>
-                                        <td>{{ $row->composition }}</td>
                                         <td>{{ $row->ph }}</td>
                                         <td>
                                             @canany(['view-ldk'])

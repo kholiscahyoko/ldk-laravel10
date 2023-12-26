@@ -21,6 +21,12 @@
                         </div>
                     </div>
                     <div class="col-4 mb-2">
+                        <h5 >Description</h5>
+                        <div class="card-content">
+                            <p class="text-justify" id="detail_material_desc"></p>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
                         <h5>LDK Number</h5>
                         <div class="card-content">
                             <p class="text-justify" id="detail_ldk_number"></p>
@@ -205,6 +211,7 @@
                     detail_characteristic.appendChild(img);
                 }
                 document.getElementById('detail_material_number').innerHTML = data.master_bk.material_number;
+                document.getElementById('detail_material_desc').innerHTML = data.master_bk.material_desc;
 
                 document.getElementById('detail_ldk_number').innerHTML = data.ldk_number ?? "Not Set";
                 document.getElementById('detail_revision_number').innerHTML = data.revision_number ?? "Not Set";

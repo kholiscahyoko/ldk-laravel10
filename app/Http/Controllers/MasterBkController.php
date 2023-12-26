@@ -139,6 +139,15 @@ class MasterBkController extends Controller
         return response()->json(['data' => $data]);        
     }
 
+    public function getByMaterialNumber($material_number){
+        $data = MasterBk::where('material_number', $material_number)->first();
+
+        if(!$data){
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+        return response()->json(['data' => $data]);        
+    }
+
     public function destroy($id){
         $data = MasterBk::find($id);
         if(!$data){

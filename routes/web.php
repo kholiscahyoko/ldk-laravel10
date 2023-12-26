@@ -29,6 +29,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::controller(MasterBkController::class)->group(function(){
     Route::get('/master_bk', 'index')->can('view-master-bk');
     Route::get('/master_bk/{id}', 'get')->can('view-master-bk');
+    Route::get('/master_bk/get_by_material_number/{material_number}', 'getByMaterialNumber')->can('view-master-bk');
     Route::post('/master_bk/store', 'store')->can('manage-master-bk');
     Route::post('/master_bk/update/{id}', 'update')->can('manage-master-bk');
     Route::post('/master_bk/reject/{id}', 'reject')->can('manage-master-bk');
