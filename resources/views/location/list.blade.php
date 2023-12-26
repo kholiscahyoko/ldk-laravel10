@@ -98,20 +98,6 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Material ID</th>
-                                        <th>Location</th>
-                                        <th>UOM</th>
-                                        <th>Quantity</th>
-                                        <th>PIC NRP</th>
-                                        <th>PIC Name</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

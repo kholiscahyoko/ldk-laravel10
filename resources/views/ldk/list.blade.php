@@ -94,18 +94,6 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Revision Number</th>
-                                        <th>LDK Number</th>
-                                        <th>Material Number</th>
-                                        <th>Reactivity</th>
-                                        <th>Composition</th>
-                                        <th>PH</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
