@@ -260,7 +260,7 @@
     }
     document.getElementById('ldk_number').value = `LDK${get_date_dmy()}0000`;
 
-    document.getElementById('ldk_material_number').addEventListener('focusout', function(e){
-        getMaterialDesc(this);
+    document.getElementById('ldk_material_number').addEventListener('keyup', function(e){
+        getMaterialDesc(this, document.getElementById('ldk_description'));
     })
 </script>

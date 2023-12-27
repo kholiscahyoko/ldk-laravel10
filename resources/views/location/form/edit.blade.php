@@ -13,7 +13,14 @@
                         <label class="col-lg-4 col-form-label" for="edit_material_number">Material Number <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" id="edit_material_number" name="material_number" placeholder="Enter material number" required>
+                            <input type="text" class="form-control" id="edit_material_number" name="material_number" placeholder="Enter material number" required disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" for="edit_material_desc">Description
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="edit_material_desc" name="material_desc" placeholder="" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -111,6 +118,7 @@
                 var data = responseData.data;
 
                 document.getElementById('edit_material_number').value = data.master_bk.material_number;
+                document.getElementById('edit_material_desc').value = data.master_bk.material_desc;
                 document.getElementById('edit_plant').value = data.plant;
                 document.getElementById('edit_location').value = data.location;
                 if(typeof document.getElementById('edit_location').value === undefined || document.getElementById('edit_location').value === null || document.getElementById('edit_location').value.trim().length === 0){
@@ -147,5 +155,4 @@
             document.getElementById("edit_other_location").required = false;
         }
     });
-
 </script>
